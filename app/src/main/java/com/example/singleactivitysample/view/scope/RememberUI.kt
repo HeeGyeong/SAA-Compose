@@ -56,7 +56,6 @@ fun RememberUI(mainNavigator: NavController) {
                         changeState = {
                             changeUI = 3
                         },
-//                        lifecycleScope
                     )
                 }
                 else -> {

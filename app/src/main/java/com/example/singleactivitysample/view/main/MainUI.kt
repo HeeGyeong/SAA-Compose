@@ -6,48 +6,20 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.ExtendedFloatingActionButton
-import androidx.compose.material.FabPosition
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.SnackbarDuration
-import androidx.compose.material.SnackbarResult
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -55,7 +27,6 @@ import com.example.singleactivitysample.R
 import com.example.singleactivitysample.view.base.BottomBar
 import com.example.singleactivitysample.view.base.DrawerItem
 import com.example.singleactivitysample.view.base.TopBar
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -76,12 +47,10 @@ fun MainUI(composeNavigator: NavController) {
         bottomBar = {
             BottomBar()
         },
-        // Top, Bottom 사이에 들어갈 item
         content = {
             ListTest(itemList, "data")
         },
         floatingActionButton = {
-            // Make SnackBar Floating Button
             ExtendedFloatingActionButton(
                 text = { Text("+") },
                 onClick = {
@@ -90,7 +59,6 @@ fun MainUI(composeNavigator: NavController) {
                             .showSnackbar(
                                 message = "Snackbar",
                                 actionLabel = "Action",
-                                // Defaults to SnackbarDuration.Short
                                 duration = SnackbarDuration.Short
                             )
                         when (result) {
@@ -121,11 +89,9 @@ fun MainUI(composeNavigator: NavController) {
 @ExperimentalAnimationApi
 @Composable
 fun TestButton(text: String) {
-    val context = LocalContext.current
     Button(
         onClick = {
             Log.d("ComposeLog", "click test Button")
-//            context.startActivity(Intent(context, MainActivity::class.java))
         },
         contentPadding = PaddingValues(
             start = 20.dp,
@@ -173,7 +139,7 @@ fun ListTest(itemList: List<Message>, data: String) {
                 }
         }
 
-        if (/*showButton*/flowShowButton) {
+        if (flowShowButton) {
             val coroutineScope = rememberCoroutineScope()
             FloatingActionButton(
                 backgroundColor = MaterialTheme.colors.primary,

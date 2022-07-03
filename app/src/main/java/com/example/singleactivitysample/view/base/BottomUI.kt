@@ -1,12 +1,7 @@
 package com.example.singleactivitysample.view.base
 
 import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -27,7 +22,7 @@ fun BottomBar() {
         ),
         backgroundColor = Color.DarkGray,
         content = {
-            BottomNavigation() {
+            BottomNavigation {
                 BottomNavigationItem(
                     icon = {
                         Icon(Icons.Filled.Favorite, "")
@@ -56,8 +51,6 @@ fun BottomBar() {
                     icon = {
                         Icon(Icons.Filled.Menu, "")
                     },
-
-
                     label = { Text(text = "Menu") },
                     selected = selectedItem.value == "Menu",
                     onClick = {

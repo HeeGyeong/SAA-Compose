@@ -6,6 +6,7 @@ data class Message(
     var open: Boolean
 )
 
+// UI 확인을 위해 임시로 넣어 둔 Data 입니다.
 var itemList = listOf(
     Message(
         "A1",

@@ -65,7 +65,6 @@ fun Progress() {
     val isEnable = remember { mutableStateOf(true) }
     val result = remember { mutableStateOf("") }
     val waitText = stringResource(id = com.example.singleactivitysample.R.string.progress_wait)
-
     val handler = Handler(Looper.getMainLooper())
 
     Column(

@@ -39,7 +39,6 @@ fun TopBar(
             Text(text = title)
         },
         navigationIcon = {
-            // show drawer icon
             IconButton(
                 onClick = {
                     scope.launch {
